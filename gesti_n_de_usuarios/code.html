@@ -203,217 +203,154 @@
                 Filtros
             </button>
 </div>
-<!-- User Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
-<!-- User Card 1 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-md text-title-md shrink-0">
-                            RC
-                        </div>
+<!-- User List -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 ambient-shadow overflow-hidden divide-y divide-outline-variant/10">
+<!-- List header (desktop) -->
+<div class="hidden md:grid md:grid-cols-[2.2fr_1.2fr_1fr_48px] gap-4 px-5 py-3 bg-surface-container-high/30 font-label-sm text-label-sm text-outline uppercase tracking-wide">
+<div>Usuario</div>
+<div>Última Conexión</div>
+<div>Estado</div>
+<div></div>
+</div>
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-semibold shrink-0">RC</div>
 <div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Roberto Castro</h3>
-<span class="font-label-sm text-label-sm text-secondary">Administrador</span>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Roberto Castro</h3>
+<span class="text-label-sm text-secondary">Administrador</span>
 </div>
 </div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
-<div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hace 5 min</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hace 5 min</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
-                            Activo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>Activo</span>
 </div>
-</div>
-</div>
-<!-- User Card 2 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
-                            ML
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">María López</h3>
-<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-semibold shrink-0">ML</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hace 1 hora</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">María López</h3>
+<span class="text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hace 1 hora</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
-                            Activo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>Activo</span>
 </div>
-</div>
-</div>
-<!-- User Card 3 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
-                            JP
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Juan Pérez</h3>
-<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-semibold shrink-0">JP</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Ayer, 16:30</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Juan Pérez</h3>
+<span class="text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Ayer, 16:30</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#fce8e6] text-[#c5221f] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>
-                            Inactivo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>Inactivo</span>
 </div>
-</div>
-</div>
-<!-- User Card 4 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
-                            AG
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Ana García</h3>
-<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-semibold shrink-0">AG</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hoy, 08:15</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Ana García</h3>
+<span class="text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hoy, 08:15</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
-                            Activo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>Activo</span>
 </div>
-</div>
-</div>
-<!-- User Card 5 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
-                            CM
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Carlos Mendoza</h3>
-<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-semibold shrink-0">CM</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hace 3 días</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Carlos Mendoza</h3>
+<span class="text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hace 3 días</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#fce8e6] text-[#c5221f] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>
-                            Inactivo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>Inactivo</span>
 </div>
-</div>
-</div>
-<!-- User Card 6 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-md text-title-md shrink-0">
-                            SR
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Sofía Ramírez</h3>
-<span class="font-label-sm text-label-sm text-secondary">Administrador</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-semibold shrink-0">SR</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hoy, 10:05</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Sofía Ramírez</h3>
+<span class="text-label-sm text-secondary">Administrador</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hoy, 10:05</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
-                            Activo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>Activo</span>
 </div>
-</div>
-</div>
-<!-- User Card 7 -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
-                            DH
-                        </div>
-<div>
-<h3 class="font-title-md text-title-md text-on-surface leading-tight">Diego Hernández</h3>
-<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface transition-colors p-1">
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div class="relative grid grid-cols-1 md:grid-cols-[2.2fr_1.2fr_1fr_48px] md:items-center gap-2 md:gap-4 px-4 md:px-5 py-4 hover:bg-surface-container-high/20 transition-colors">
+<div class="flex items-center gap-3 pr-8 md:pr-0">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-semibold shrink-0">DH</div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
-<div class="font-body-md text-body-md text-on-surface">Hace 2 horas</div>
+<h3 class="text-body-lg font-semibold text-on-surface leading-tight">Diego Hernández</h3>
+<span class="text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-label-sm text-outline md:hidden">Última conexión:</span>
+<span class="text-body-md text-on-surface">Hace 2 horas</span>
 </div>
 <div>
-<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
-                            Activo
-                        </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>Activo</span>
 </div>
-</div>
+<button class="absolute top-3 right-3 md:static text-outline hover:text-on-surface transition-colors p-1 md:justify-self-center">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
 </div>
 </div>
 </main>
