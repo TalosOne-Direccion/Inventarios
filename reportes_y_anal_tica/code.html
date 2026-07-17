@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reportes y Analítica - Refacciones Pro</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config from Style Guidance -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#75777e",
+                        "surface-variant": "#e0e3e5",
+                        "primary-container": "#0d1c32",
+                        "tertiary-container": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed": "#0d1c32",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-container": "#76849f",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b9c7e4",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#505f76",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#44474d",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-tint": "#515f78",
+                        "on-tertiary-container": "#d95f00",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "md": "24px",
+                        "xl": "48px",
+                        "sm": "16px",
+                        "lg": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "margin-desktop": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle shadow for separating canvas content as requested */
+        .glass-panel {
+            box-shadow: 0 4px 12px rgba(13, 28, 50, 0.04);
+        }
+    </style>
+<!-- Chart.js for visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-background text-on-background h-full font-body-md text-body-md flex overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen p-md bg-white/70 backdrop-blur-md border-r border-outline-variant/10 shadow-sm docked left-0 h-full w-64 shrink-0 z-40">
+<div class="mb-xl">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión Automotriz</p>
+</div>
+<ul class="flex flex-col space-y-sm flex-1">
+<li>
+<a class="flex items-center p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-sm">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-sm">inventory_2</span>
+<span class="font-body-md text-body-md">Inventario</span>
+</a>
+</li>
+<li>
+<a class="flex items-center p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-sm">group</span>
+<span class="font-body-md text-body-md">Usuarios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-sm">swap_horiz</span>
+<span class="font-body-md text-body-md">Movimientos</span>
+</a>
+</li>
+<li>
+<!-- Active State -->
+<a class="flex items-center p-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container/50 hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-body-md text-body-md">Reportes</span>
+</a>
+</li>
+</ul>
+<button class="mt-auto w-full py-sm bg-primary text-on-primary rounded-lg font-body-md text-body-md hover:bg-primary/90 transition-colors active:scale-95 duration-150 flex justify-center items-center">
+<span class="material-symbols-outlined mr-xs">add</span>
+            Nueva Refacción
+        </button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-desktop py-base w-full sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<div class="flex items-center md:hidden">
+<span class="material-symbols-outlined text-primary mr-sm cursor-pointer">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</h1>
+</div>
+<!-- Global Search -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-sm py-xs border border-outline-variant/30 focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/20 transition-all w-96 ml-md">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface focus:ring-0 placeholder-on-surface-variant/50" placeholder="Buscar reportes, SKUs..." type="text"/>
+</div>
+<div class="flex items-center space-x-sm">
+<button class="p-xs rounded-full text-on-surface-variant hover:text-on-primary-container hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded-full text-on-surface-variant hover:text-on-primary-container hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop">
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Analítica General</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Resumen de rendimiento y estado del inventario automotriz.</p>
+</div>
+<!-- Dashboard Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- KPI Cards -->
+<div class="md:col-span-3 bg-surface-container-lowest rounded-xl border border-outline-variant/10 glass-panel p-md flex flex-col justify-between">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-body-md text-body-md text-on-surface-variant">Ventas del Mes</span>
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-xs rounded-lg">trending_up</span>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-primary">$452K</h3>
+<p class="font-label-sm text-label-sm text-[#388E3C] flex items-center mt-xs">
+<span class="material-symbols-outlined text-[14px] mr-[2px]">arrow_upward</span>
+                            +12.5% vs mes anterior
+                        </p>
+</div>
+</div>
+<div class="md:col-span-3 bg-surface-container-lowest rounded-xl border border-outline-variant/10 glass-panel p-md flex flex-col justify-between">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-body-md text-body-md text-on-surface-variant">Órdenes Completadas</span>
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-xs rounded-lg">check_circle</span>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-primary">1,204</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Promedio de entrega: 24h</p>
+</div>
+</div>
+<div class="md:col-span-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 glass-panel p-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-md text-title-md text-primary">Distribución de Inventario</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<div class="h-48 relative">
+<canvas id="inventoryChart"></canvas>
+</div>
+</div>
+<!-- Bar Chart: Top Brands -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant/10 glass-panel p-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-md text-title-md text-primary">Marcas más vendidas (Volumen)</h3>
+<div class="flex space-x-2">
+<span class="px-sm py-xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm cursor-pointer hover:bg-surface-dim transition-colors">Mes</span>
+<span class="px-sm py-xs rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-dim transition-colors">Trimestre</span>
+</div>
+</div>
+<div class="h-64">
+<canvas id="brandsChart"></canvas>
+</div>
+</div>
+<!-- High Rotation Table -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 glass-panel flex flex-col overflow-hidden">
+<div class="p-md border-b border-outline-variant/10 flex justify-between items-center bg-primary-container">
+<h3 class="font-title-md text-title-md text-on-primary">Mayor Rotación</h3>
+<span class="material-symbols-outlined text-on-primary">sync</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold">Refacción</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold text-right">Stock</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="py-sm px-md">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded bg-surface-container-high mr-sm flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up studio shot of a shiny, metallic automotive brake pad on a pristine white background. High key lighting, sharp focus, professional product photography style, emphasizing the textured surface of the friction material and the smooth steel backing plate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGDcWK61rQuAdHgjy29TzzgvtajPQzYzG7KGOwNEMw6d89UafzQcYeGNIfCZwnKeZ_udHPXe-DDYUtTw5H-Oxfnj-oYTPwujSpplm-V66kl8DQI_XQIsM4q9ZwDKdxv8zscL4tuGkNd3-2cUepXxxUmPpLPFwzzGAL3L1QeSax9aikJ17CD2Ba5BqwxXMO2mdiZmvR2ctClyn_NwhCSpYzbZlqm-8Qz_yqCyoQ5zKNAc-JEL7KBdXm"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-primary">Balata Delantera C.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SKU: BD-0982</p>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container/30 text-[#BA1A1A] font-label-sm text-label-sm">
+                                            12 uds
+                                        </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-lowest transition-colors group cursor-pointer bg-surface/50">
+<td class="py-sm px-md">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded bg-surface-container-high mr-sm flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, isolated studio photograph of a modern cylindrical automotive oil filter. The filter is painted a matte black with minimal branding visible. Bright, even lighting highlights the ridges of the grip at the top. White background, high clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkL0f99aY84ZxNNE2Ht9opIbG0hkVzFmsFYv2ymnfkka1oQjakPX94alDkzQgG5s_xqTNnMwYsmxb3gU8LCqhKHeZe5scM0QkZA9WZH5B7QeuwL7EE3NT5YlYG7YLvPJLp6KqKu-4uHZUa15LBgkckViZGwPxWA2n4cyocPQRZ9rsIskMB3hz1ycC73sfbQOZpCLqFKHiHh5MR9TZrZJjEVMqLOOoM7AQbl8twY0pa2vq_yKNZ1NAE"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-primary">Filtro de Aceite Sint.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SKU: FA-1104</p>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] font-label-sm text-label-sm">
+                                            145 uds
+                                        </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-lowest transition-colors group cursor-pointer">
+<td class="py-sm px-md">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded bg-surface-container-high mr-sm flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Professional studio shot of a bright red ignition coil against a pure white background. The lighting is crisp and reflects subtly off the plastic casing. Detailed view showing the connector pins and mounting bracket. Automotive part photography, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByu9_TkYbmq-uItG7WpQJoZFZAnZ7Elw8HJZBimVZBrpq4KK8eftxW6yYSN4mwXKyob3YMz2j1gl5tI6oBDQ8rfPNQ2z4feG6O01z2mprtE-1w9EdGPfP-Ou39LqamtCNbyX5WLKX7m08VyD_sHvEYdHi0pmMpVivhZHX2PHm9qIlKPEAMfr5Dfc2u9Z7ZsmksRawzAc1k1GXDb0FcUKWIuKT6DhWcwLmsaFx7nz6aWANU_RvpoliP"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-primary">Bobina de Ignición</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SKU: BI-7731</p>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-right">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#E3F2FD] text-[#1565C0] font-label-sm text-label-sm">
+                                            42 uds
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-sm text-center border-t border-outline-variant/10">
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Ver reporte completo</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Chart configurations
+        const textColor = '#191c1e'; // on-surface
+        const gridColor = '#e0e3e5'; // surface-variant
+        const tooltipBg = '#0d1c32'; // primary-container
+
+        // 1. Doughnut Chart: Distribución de Inventario
+        const ctxInventory = document.getElementById('inventoryChart').getContext('2d');
+        new Chart(ctxInventory, {
+            type: 'doughnut',
+            data: {
+                labels: ['Motor', 'Frenos', 'Eléctrico', 'Suspensión', 'Carrocería'],
+                datasets: [{
+                    data: [35, 25, 20, 12, 8],
+                    backgroundColor: [
+                        '#000000', // primary
+                        '#505f76', // secondary
+                        '#76849f', // on-primary-container
+                        '#c5c6cd', // outline-variant
+                        '#e0e3e5'  // surface-variant
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: textColor,
+                            font: { family: 'Inter', size: 12 },
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: tooltipBg,
+                        padding: 12,
+                        cornerRadius: 8,
+                        titleFont: { family: 'Inter', size: 14 },
+                        bodyFont: { family: 'Inter', size: 13 }
+                    }
+                }
+            }
+        });
+
+        // 2. Bar Chart: Marcas más vendidas
+        const ctxBrands = document.getElementById('brandsChart').getContext('2d');
+        new Chart(ctxBrands, {
+            type: 'bar',
+            data: {
+                labels: ['Bosh', 'ACDelco', 'NGK', 'Brembo', 'Monroe', 'Valeo'],
+                datasets: [{
+                    label: 'Unidades Vendidas',
+                    data: [1250, 980, 850, 620, 510, 480],
+                    backgroundColor: '#0d1c32', // primary-container
+                    borderRadius: 4,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: tooltipBg,
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { color: textColor, font: { family: 'Inter' } }
+                    },
+                    y: {
+                        grid: { color: gridColor, drawBorder: false, borderDash: [4, 4] },
+                        ticks: { color: textColor, font: { family: 'Inter' }, stepSize: 300 }
+                    }
+                }
+            }
+        });
+    </script>
+<script id="nav-wiring">
+(function(){
+  var BASE = '../';
+  var map = {
+    'dashboard':   BASE+'dashboard_administrador/code.html',
+    'inventario':  BASE+'cat_logo_de_inventario/code.html',
+    'usuarios':    BASE+'gesti_n_de_usuarios/code.html',
+    'movimientos': BASE+'historial_de_movimientos/code.html',
+    'reportes':    BASE+'reportes_y_anal_tica/code.html'
+  };
+  document.querySelectorAll('a').forEach(function(a){
+    var label = '';
+    a.querySelectorAll('span').forEach(function(s){
+      if(!s.classList.contains('material-symbols-outlined')) label += s.textContent;
+    });
+    if(!a.querySelector('span')) label = a.textContent;
+    label = label.trim().toLowerCase();
+    if(map[label]) a.setAttribute('href', map[label]);
+  });
+})();
+</script>
+</body></html>

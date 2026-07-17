@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Historial de Movimientos - Refacciones Pro</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#75777e",
+                        "surface-variant": "#e0e3e5",
+                        "primary-container": "#0d1c32",
+                        "tertiary-container": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed": "#0d1c32",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-container": "#76849f",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b9c7e4",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#505f76",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#44474d",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-tint": "#515f78",
+                        "on-tertiary-container": "#d95f00",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "md": "24px",
+                        "xl": "48px",
+                        "sm": "16px",
+                        "lg": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "margin-desktop": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "display-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0 4px 12px rgba(13, 28, 50, 0.04); }
+        .input-glow:focus-within { border-color: #0d1c32; box-shadow: 0 0 0 2px rgba(13, 28, 50, 0.1); }
+        
+        /* Hide scrollbar for cleaner look in tables */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex h-screen overflow-hidden font-body-md">
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 bg-white/70 backdrop-blur-md border-r border-outline-variant/10 shadow-sm p-md z-40 shrink-0">
+<!-- Brand / Header -->
+<div class="mb-xl">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Gestión Automotriz</p>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-sm flex-1">
+<!-- Inactive -->
+<li>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-title-md text-title-md text-[16px]">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-title-md text-title-md text-[16px]">Inventario</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-title-md text-title-md text-[16px]">Usuarios</span>
+</a>
+</li>
+<!-- Active Tab: Movimientos -->
+<li>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low/50" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">swap_horiz</span>
+<span class="font-title-md text-title-md text-[16px]">Movimientos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-title-md text-title-md text-[16px]">Reportes</span>
+</a>
+</li>
+</ul>
+<!-- CTA -->
+<div class="mt-auto pt-md">
+<button class="w-full bg-primary text-on-primary font-title-md text-body-lg py-xs px-sm rounded-lg hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Nueva Refacción
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<!-- TopNavBar (Responsive, sticks to top) -->
+<header class="flex justify-between items-center px-margin-desktop py-base w-full sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm border-b md:border-none border-outline-variant/10">
+<!-- Mobile Brand -->
+<div class="md:hidden flex items-center gap-sm">
+<button class="text-primary p-xs rounded-md hover:bg-surface-container-high/50 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</h1>
+</div>
+<!-- Empty div for desktop flex alignment -->
+<div class="hidden md:block"></div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:text-on-primary-container transition-all p-xs rounded-full hover:bg-surface-container-high/50">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-primary-container transition-all p-xs rounded-full hover:bg-surface-container-high/50">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas (Scrollable Content) -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-surface-container-low pb-xl">
+<!-- Page Header -->
+<div class="mb-md">
+<h2 class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-primary">Historial de Movimientos</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs max-w-2xl">Registro cronológico detallado de entradas y salidas de refacciones en el almacén principal.</p>
+</div>
+<!-- Filters Bar (Glassmorphism functional) -->
+<section class="bg-white/70 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-sm md:p-md mb-md custom-shadow flex flex-col lg:flex-row gap-sm items-end justify-between">
+<div class="flex flex-col md:flex-row gap-sm w-full lg:w-auto">
+<!-- Date Range Filter -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Rango de Fechas</label>
+<div class="flex items-center gap-xs">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-sm py-xs input-glow transition-all">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-xs">calendar_today</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-body-md text-on-surface w-32 outline-none" type="date"/>
+</div>
+<span class="text-on-surface-variant font-body-md">a</span>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-sm py-xs input-glow transition-all">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-xs">calendar_today</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-body-md text-on-surface w-32 outline-none" type="date"/>
+</div>
+</div>
+</div>
+<!-- Type Filter -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Tipo de Movimiento</label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-sm py-xs input-glow transition-all w-full md:w-48">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-xs">filter_list</span>
+<select class="bg-transparent border-none p-0 focus:ring-0 text-body-md text-on-surface w-full outline-none appearance-none cursor-pointer">
+<option value="all">Todos</option>
+<option value="in">Entrada</option>
+<option value="out">Salida</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Global Search inside Filter -->
+<div class="w-full lg:w-72 mt-sm lg:mt-0">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-sm py-xs input-glow transition-all">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-body-md text-on-surface w-full outline-none placeholder:text-outline" placeholder="Buscar refacción, SKU o usuario..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl custom-shadow overflow-hidden">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-primary-container">
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold">Fecha/Hora</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold">Tipo</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold">Refacción</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold text-right">Cantidad</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold">Usuario Responsable</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-primary-fixed uppercase tracking-wider font-semibold">Nota</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-outline-variant/10">
+<!-- Row 1: Entrada -->
+<tr class="group hover:bg-surface-container/30 transition-colors">
+<td class="py-md px-md text-on-surface whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">24 Oct, 2023</span>
+<span class="text-on-surface-variant text-[12px]">08:30 AM</span>
+</div>
+</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                                        ENTRADA
+                                    </span>
+</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface flex items-center justify-center border border-outline-variant/20 shrink-0">
+<span class="material-symbols-outlined text-outline">settings</span>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Filtro de Aceite Sintético</span>
+<span class="font-label-sm text-on-surface-variant">SKU: FA-9002X</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-title-md text-[16px] text-primary">
+                                    +50
+                                </td>
+<td class="py-md px-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-[10px] font-bold shrink-0">JP</div>
+<span class="text-on-surface">Juan Pérez</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="Reabastecimiento semanal de proveedor principal.">
+                                    Reabastecimiento semanal...
+                                </td>
+</tr>
+<!-- Row 2: Salida -->
+<tr class="bg-surface-container-low/30 group hover:bg-surface-container/30 transition-colors">
+<td class="py-md px-md text-on-surface whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">23 Oct, 2023</span>
+<span class="text-on-surface-variant text-[12px]">14:15 PM</span>
+</div>
+</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                                        SALIDA
+                                    </span>
+</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface flex items-center justify-center border border-outline-variant/20 shrink-0">
+<span class="material-symbols-outlined text-outline">build</span>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Balata Delantera Cerámica</span>
+<span class="font-label-sm text-on-surface-variant">SKU: BD-441Z</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-title-md text-[16px] text-error">
+                                    -4
+                                </td>
+<td class="py-md px-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center font-label-sm text-[10px] font-bold shrink-0">MG</div>
+<span class="text-on-surface">María Gómez</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="Asignado a Orden de Trabajo #4512 - Servicio Mayor.">
+                                    Orden #4512 - Servicio...
+                                </td>
+</tr>
+<!-- Row 3: Entrada -->
+<tr class="group hover:bg-surface-container/30 transition-colors">
+<td class="py-md px-md text-on-surface whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">23 Oct, 2023</span>
+<span class="text-on-surface-variant text-[12px]">10:05 AM</span>
+</div>
+</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                                        ENTRADA
+                                    </span>
+</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface flex items-center justify-center border border-outline-variant/20 shrink-0">
+<span class="material-symbols-outlined text-outline">directions_car</span>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Amortiguador Trasero Gas</span>
+<span class="font-label-sm text-on-surface-variant">SKU: AM-998T</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-title-md text-[16px] text-primary">
+                                    +12
+                                </td>
+<td class="py-md px-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-sm text-[10px] font-bold shrink-0">CR</div>
+<span class="text-on-surface">Carlos Ruiz</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="Recepción de lote atrasado.">
+                                    Recepción lote atrasado
+                                </td>
+</tr>
+<!-- Row 4: Salida -->
+<tr class="bg-surface-container-low/30 group hover:bg-surface-container/30 transition-colors">
+<td class="py-md px-md text-on-surface whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-semibold text-primary">22 Oct, 2023</span>
+<span class="text-on-surface-variant text-[12px]">16:45 PM</span>
+</div>
+</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                                        SALIDA
+                                    </span>
+</td>
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface flex items-center justify-center border border-outline-variant/20 shrink-0">
+<span class="material-symbols-outlined text-outline">battery_charging_full</span>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Batería 12V 750AMP</span>
+<span class="font-label-sm text-on-surface-variant">SKU: BT-12V75</span>
+</div>
+</div>
+</td>
+<td class="py-md px-md text-right font-title-md text-[16px] text-error">
+                                    -1
+                                </td>
+<td class="py-md px-md">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-[10px] font-bold shrink-0">AS</div>
+<span class="text-on-surface">Ana Silva</span>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="Cambio por garantía cliente VIP.">
+                                    Garantía cliente VIP
+                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-lowest border-t border-outline-variant/10 px-md py-sm flex items-center justify-between">
+<span class="font-body-md text-on-surface-variant text-sm">Mostrando 1 a 4 de 248 movimientos</span>
+<div class="flex items-center gap-xs">
+<button class="p-xs rounded hover:bg-surface-container-high transition-colors text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-fixed font-title-md text-[14px] flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-title-md text-[14px] flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-title-md text-[14px] flex items-center justify-center transition-colors">3</button>
+<span class="text-on-surface-variant mx-xs">...</span>
+<button class="p-xs rounded hover:bg-surface-container-high transition-colors text-on-surface">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script id="nav-wiring">
+(function(){
+  var BASE = '../';
+  var map = {
+    'dashboard':   BASE+'dashboard_administrador/code.html',
+    'inventario':  BASE+'cat_logo_de_inventario/code.html',
+    'usuarios':    BASE+'gesti_n_de_usuarios/code.html',
+    'movimientos': BASE+'historial_de_movimientos/code.html',
+    'reportes':    BASE+'reportes_y_anal_tica/code.html'
+  };
+  document.querySelectorAll('a').forEach(function(a){
+    var label = '';
+    a.querySelectorAll('span').forEach(function(s){
+      if(!s.classList.contains('material-symbols-outlined')) label += s.textContent;
+    });
+    if(!a.querySelector('span')) label = a.textContent;
+    label = label.trim().toLowerCase();
+    if(map[label]) a.setAttribute('href', map[label]);
+  });
+})();
+</script>
+</body></html>

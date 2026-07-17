@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Usuarios - Refacciones Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#75777e",
+                        "surface-variant": "#e0e3e5",
+                        "primary-container": "#0d1c32",
+                        "tertiary-container": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-primary-fixed": "#0d1c32",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-container": "#76849f",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b9c7e4",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#505f76",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#44474d",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed": "#ffdbca",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-tint": "#515f78",
+                        "on-tertiary-container": "#d95f00",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "md": "24px",
+                        "xl": "48px",
+                        "sm": "16px",
+                        "lg": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "margin-desktop": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .ambient-shadow {
+            box-shadow: 0 4px 12px rgba(11, 28, 48, 0.04);
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-background">
+<!-- Mobile Top Navigation -->
+<div class="md:hidden flex justify-between items-center px-margin-mobile py-base w-full sticky top-0 z-50 bg-white/70 dark:bg-surface-container-highest/70 backdrop-blur-md shadow-sm border-b-0">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-inverse-primary">
+            Refacciones Pro
+        </div>
+<div class="flex gap-4">
+<button class="text-primary dark:text-inverse-primary hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-primary dark:text-inverse-primary hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+<!-- Desktop Side Navigation -->
+<nav class="hidden md:flex flex-col h-screen p-md docked left-0 w-64 bg-white/70 dark:bg-surface-container-highest/70 backdrop-blur-md shadow-sm border-r border-outline-variant/10 shrink-0 sticky top-0">
+<div class="mb-lg">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary mb-2">
+                Refacciones Pro
+            </div>
+<div class="font-body-md text-body-md text-on-surface-variant">Gestión Automotriz</div>
+</div>
+<div class="flex-grow space-y-2">
+<a class="flex items-center gap-3 p-3 rounded-lg font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventario
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-r-4 border-primary dark:border-inverse-primary active:scale-95 duration-150 bg-surface-container-high/20" href="#">
+<span class="material-symbols-outlined icon-fill">group</span>
+                Usuarios
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+                Movimientos
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high/50 dark:hover:bg-surface-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Reportes
+            </a>
+</div>
+<div class="mt-auto pt-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant/30" data-alt="A small, professional circular avatar portrait of a modern warehouse administrator wearing a dark polo shirt, lit with clean bright studio lighting against a neutral white background, conveying a sense of order and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdLLFN8yf9fvaYmyvbojDCaQKjEsjpEMQ8nIpuq3fEkeW-_NGSi7sr1DEJMFsDQK17NcDPfyhTxEcXZhuDDX9c6SWEyJ4D_hcSWyc_S_r733XkIzBdcCjjuOfdm-ytSM1E0LA77ArDtielx5FgQrdxQi0sYqCjVG2F3enJhVY_MiJ3vF9Boyc2CtABBSJ8NvQb0mHidE5HnuIk181VHyPVSeU-2CtAzc5O9Pe2jWkiRJxc-WT72uj_"/>
+<div>
+<div class="font-label-sm text-label-sm font-bold text-on-surface">Perfil de Administrador</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile py-md md:px-margin-desktop md:py-lg flex flex-col gap-md md:gap-lg overflow-y-auto">
+<!-- Header Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Gestión de Usuarios</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Administra accesos y roles del sistema.</p>
+</div>
+<button class="bg-[#d95f00] hover:bg-[#b04d00] text-white font-title-md text-title-md px-6 py-3 rounded-lg transition-colors flex items-center gap-2 shadow-sm whitespace-nowrap active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                Crear Nuevo Usuario
+            </button>
+</div>
+<!-- Search and Filter Bar -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/20 rounded-xl p-2 flex items-center gap-3 ambient-shadow sticky top-[72px] md:top-0 z-40">
+<span class="material-symbols-outlined text-outline ml-2">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-outline p-2 outline-none" placeholder="Buscar por nombre o rol..." type="text"/>
+<div class="w-px h-6 bg-outline-variant/30 hidden sm:block"></div>
+<button class="hidden sm:flex items-center gap-2 font-label-sm text-label-sm text-secondary px-3 py-2 rounded-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                Filtros
+            </button>
+</div>
+<!-- User Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
+<!-- User Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-md text-title-md shrink-0">
+                            RC
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Roberto Castro</h3>
+<span class="font-label-sm text-label-sm text-secondary">Administrador</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hace 5 min</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                            Activo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
+                            ML
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">María López</h3>
+<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hace 1 hora</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                            Activo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
+                            JP
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Juan Pérez</h3>
+<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Ayer, 16:30</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#fce8e6] text-[#c5221f] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>
+                            Inactivo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
+                            AG
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Ana García</h3>
+<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hoy, 08:15</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                            Activo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
+                            CM
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Carlos Mendoza</h3>
+<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hace 3 días</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#fce8e6] text-[#c5221f] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>
+                            Inactivo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-md text-title-md shrink-0">
+                            SR
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Sofía Ramírez</h3>
+<span class="font-label-sm text-label-sm text-secondary">Administrador</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hoy, 10:05</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                            Activo
+                        </span>
+</div>
+</div>
+</div>
+<!-- User Card 7 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-5 ambient-shadow hover:shadow-md transition-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-md text-title-md shrink-0">
+                            DH
+                        </div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface leading-tight">Diego Hernández</h3>
+<span class="font-label-sm text-label-sm text-secondary">Usuario</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-2 pt-4 border-t border-surface-container-high/50">
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Última Conexión</div>
+<div class="font-body-md text-body-md text-on-surface">Hace 2 horas</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Estado</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                            Activo
+                        </span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Visible only on md:hidden, assuming top-level destination) -->
+<nav class="md:hidden flex justify-around items-center bg-white/70 dark:bg-surface-container-highest/70 backdrop-blur-md shadow-[0_-2px_10px_rgba(0,0,0,0.05)] w-full sticky bottom-0 z-50 p-2 border-t-0">
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-[10px] mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-[10px] mt-1">Inventario</span>
+</a>
+<a class="flex flex-col items-center p-2 text-primary font-bold" href="#">
+<span class="material-symbols-outlined icon-fill">group</span>
+<span class="font-label-sm text-[10px] mt-1">Usuarios</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-sm text-[10px] mt-1">Movs</span>
+</a>
+</nav>
+<script id="nav-wiring">
+(function(){
+  var BASE = '../';
+  var map = {
+    'dashboard':   BASE+'dashboard_administrador/code.html',
+    'inventario':  BASE+'cat_logo_de_inventario/code.html',
+    'usuarios':    BASE+'gesti_n_de_usuarios/code.html',
+    'movimientos': BASE+'historial_de_movimientos/code.html',
+    'reportes':    BASE+'reportes_y_anal_tica/code.html'
+  };
+  document.querySelectorAll('a').forEach(function(a){
+    var label = '';
+    a.querySelectorAll('span').forEach(function(s){
+      if(!s.classList.contains('material-symbols-outlined')) label += s.textContent;
+    });
+    if(!a.querySelector('span')) label = a.textContent;
+    label = label.trim().toLowerCase();
+    if(map[label]) a.setAttribute('href', map[label]);
+  });
+})();
+</script>
+</body></html>

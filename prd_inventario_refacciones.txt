@@ -1,0 +1,17 @@
+# PRD: Plataforma de Gestión de Inventarios de Refacciones
+
+## Objetivo
+Gestionar el flujo de refacciones en una agencia automotriz con roles diferenciados para 1 administrador y 7 usuarios.
+
+## Usuarios
+- 1 Administrador: Control total de inventario, usuarios y reportes.
+- 7 Usuarios: Consulta de stock, registro de entradas/salidas y reportes básicos.
+
+## Vistas Propuestas
+1. Dashboard Principal (Admin/User)
+2. Catálogo de Refacciones (Inventario)
+3. Gestión de Usuarios (Solo Admin)
+4. Historial de Movimientos
+5. Reportes de Stock y Ventas
+6. Configuración de Alertas (Stock Bajo)
+7. Detalle de Producto / Edición

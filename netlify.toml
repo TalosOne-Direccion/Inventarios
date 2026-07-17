@@ -1,0 +1,4 @@
+# Configuración de despliegue para sitio estático (sin build)
+[build]
+  publish = "."
+  command = ""

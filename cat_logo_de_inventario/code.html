@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventario - Refacciones Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "outline": "#75777e",
+                            "surface-variant": "#e0e3e5",
+                            "primary-container": "#0d1c32",
+                            "tertiary-container": "#341100",
+                            "surface-container-lowest": "#ffffff",
+                            "surface": "#f7f9fb",
+                            "on-primary-fixed": "#0d1c32",
+                            "outline-variant": "#c5c6cd",
+                            "secondary-fixed": "#d3e4fe",
+                            "surface-dim": "#d8dadc",
+                            "on-primary-container": "#76849f",
+                            "error": "#ba1a1a",
+                            "inverse-primary": "#b9c7e4",
+                            "primary-fixed-dim": "#b9c7e4",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#2d3133",
+                            "on-secondary-fixed": "#0b1c30",
+                            "on-error": "#ffffff",
+                            "on-primary-fixed-variant": "#39475f",
+                            "surface-container-high": "#e6e8ea",
+                            "secondary": "#505f76",
+                            "on-surface": "#191c1e",
+                            "surface-bright": "#f7f9fb",
+                            "surface-container-highest": "#e0e3e5",
+                            "tertiary": "#000000",
+                            "on-surface-variant": "#44474d",
+                            "on-secondary-container": "#54647a",
+                            "on-error-container": "#93000a",
+                            "surface-container-low": "#f2f4f6",
+                            "inverse-on-surface": "#eff1f3",
+                            "on-tertiary": "#ffffff",
+                            "error-container": "#ffdad6",
+                            "primary": "#000000",
+                            "on-background": "#191c1e",
+                            "background": "#f7f9fb",
+                            "on-primary": "#ffffff",
+                            "on-tertiary-fixed": "#341100",
+                            "tertiary-fixed-dim": "#ffb690",
+                            "secondary-fixed-dim": "#b7c8e1",
+                            "tertiary-fixed": "#ffdbca",
+                            "secondary-container": "#d0e1fb",
+                            "on-secondary-fixed-variant": "#38485d",
+                            "on-tertiary-fixed-variant": "#783200",
+                            "surface-tint": "#515f78",
+                            "on-tertiary-container": "#d95f00",
+                            "primary-fixed": "#d6e3ff",
+                            "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "gutter": "20px",
+                            "md": "24px",
+                            "xl": "48px",
+                            "sm": "16px",
+                            "lg": "32px",
+                            "margin-mobile": "16px",
+                            "xs": "8px",
+                            "margin-desktop": "40px",
+                            "base": "4px"
+                    },
+                    "fontFamily": {
+                            "title-md": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "display-lg": ["Inter"],
+                            "body-md": ["Inter"],
+                            "headline-lg-mobile": ["Inter"],
+                            "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                            "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle environmental shadow for cards */
+        .ambient-shadow {
+            box-shadow: 0 4px 12px rgba(13, 28, 50, 0.04);
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #c5c6cd;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #75777e;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col md:flex-row">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-margin-mobile py-base w-full sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-xl">notifications</span>
+<span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen p-md bg-white/70 backdrop-blur-md w-64 border-r border-outline-variant/10 shadow-sm sticky top-0 z-40 shrink-0">
+<div class="mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Refacciones Pro</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Gestión Automotriz</p>
+</div>
+<ul class="flex flex-col gap-sm flex-grow">
+<li>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm p-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-low active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="fill">inventory_2</span>
+<span class="font-body-md text-body-md">Inventario</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Usuarios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-body-md text-body-md">Movimientos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reportes</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto">
+<div class="flex items-center gap-sm p-sm border-t border-outline-variant/20 pt-md">
+<img alt="Perfil de Administrador" class="w-10 h-10 rounded-full object-cover border border-outline-variant/30" data-alt="A professional headshot of an administrative manager in a modern office setting. The lighting is soft and neutral, conveying a sense of competence and approachability. The background is slightly blurred but suggests a clean, high-tech automotive management environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk4B2jEG6S8eNk8PPFTdV2zbpNWjHllsiEOuHK3OMg65o4Nl2l4a2XqS_7sl6SHYv7Ex6n0GcP83jGd5yCFpZw-hCh3hMd_6YcRM-zEn8k9KZnCToJz5BpgkQcwlkORGc5ikvO_pQr3ffBFF4VtVNkS7kY8i-Fksva9m8LZ_024UjOKk5IlllVoXO_7Y2naZ1F7NiBlHuNEnduRQUmYDVAxw8e5FLTQE379FDyai2G1ezlOTBJYSuC"/>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Admin User</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Perfil de Administrador</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- Desktop Header Area (Search & Actions) -->
+<div class="hidden md:flex justify-between items-center px-margin-desktop py-lg bg-surface/80 backdrop-blur-sm sticky top-0 z-30">
+<div class="relative w-96 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all ambient-shadow" placeholder="Buscar por SKU, Nombre o Categoría..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="bg-[#ff5722] hover:bg-[#e64a19] text-white px-6 py-2 rounded-lg font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-2 transition-colors ambient-shadow active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nueva Refacción
+                </button>
+</div>
+</div>
+<!-- Page Header & Filters -->
+<div class="px-margin-mobile md:px-margin-desktop py-md flex flex-col gap-md">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary">Catálogo de Inventario</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Gestión y control de refacciones disponibles.</p>
+</div>
+<!-- Filters (Glassmorphism Píldoras) -->
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-1 px-3 py-1.5 bg-white/60 backdrop-blur-md border border-outline-variant/20 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/80 transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filtros
+                    </button>
+<select class="px-3 py-1.5 bg-white/60 backdrop-blur-md border border-outline-variant/20 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/80 transition-colors appearance-none pr-8 bg-no-repeat bg-[right_0.5rem_center] bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2344474d%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M7.247%2011.14%202.451%205.658C1.885%205.013%202.345%204%203.204%204h9.592a1%201%200%200%201%20.753%201.659l-4.796%205.48a1%201%200%200%201-1.506%200z%22%2F%3E%3C%2Fsvg%3E')]">
+<option value="">Categoría: Todas</option>
+<option value="motor">Motor</option>
+<option value="frenos">Frenos</option>
+<option value="suspension">Suspensión</option>
+</select>
+<select class="px-3 py-1.5 bg-white/60 backdrop-blur-md border border-outline-variant/20 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/80 transition-colors appearance-none pr-8 bg-no-repeat bg-[right_0.5rem_center] bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2344474d%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M7.247%2011.14%202.451%205.658C1.885%205.013%202.345%204%203.204%204h9.592a1%201%200%200%201%20.753%201.659l-4.796%205.48a1%201%200%200%201-1.506%200z%22%2F%3E%3C%2Fsvg%3E')]">
+<option value="">Marca: Todas</option>
+<option value="acdelco">ACDelco</option>
+<option value="bosch">Bosch</option>
+<option value="brembo">Brembo</option>
+</select>
+</div>
+</div>
+<!-- Mobile Search (Visible only on mobile) -->
+<div class="md:hidden relative w-full group mt-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all ambient-shadow" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<!-- Inventory Data Table -->
+<div class="px-margin-mobile md:px-margin-desktop pb-xl overflow-hidden flex-1 flex flex-col">
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl ambient-shadow overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-primary-container text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold w-16 text-center">Img</th>
+<th class="py-3 px-4 font-semibold">Nombre de la Pieza</th>
+<th class="py-3 px-4 font-semibold">SKU</th>
+<th class="py-3 px-4 font-semibold">Categoría</th>
+<th class="py-3 px-4 font-semibold text-right">Stock</th>
+<th class="py-3 px-4 font-semibold text-right">Precio Unit.</th>
+<th class="py-3 px-4 font-semibold text-center">Estado</th>
+<th class="py-3 px-4 font-semibold text-center w-12"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant text-body-md font-body-md text-on-surface">
+<!-- Row 1: In Stock -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3 px-4 text-center">
+<div class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20 mx-auto">
+<img alt="Brake Rotor" class="w-full h-full object-cover" data-alt="A clean, studio-lit photograph of a shiny, metallic automotive brake rotor on a pure white background. The metal texturing is precise, reflecting a professional, industrial aesthetic suitable for a high-end auto parts catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM2HL61PeaBEUlAy-nQwFbvjFapi18zSWgZUbj24P27nhfzMke6km6z104-wHGLo_o2AghkF1eKNrMZ41jBXWpLgwA4hNWq_E_-Xe0R91jk8EtHTWABVSWQiOxmSIsY5QV1IlAEEw9HOyYI0Iu1WFjUT5fHaeK9WdFV6sMFRKDjJBlXckoFwKW2702rTWHxlzcxr8TR3KSIvWBM1tKervW6XMkr0ERUfESxlUuKw2JBGae0G5YOQtw"/>
+</div>
+</td>
+<td class="py-3 px-4 font-medium">Disco de Freno Delantero Ventilado</td>
+<td class="py-3 px-4 text-on-surface-variant font-mono text-sm">BRK-7492-FD</td>
+<td class="py-3 px-4 text-on-surface-variant">Frenos</td>
+<td class="py-3 px-4 text-right font-medium">145</td>
+<td class="py-3 px-4 text-right font-medium text-primary-container">$1,250.00</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#e8f5e9] text-[#2e7d32] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4caf50]"></span>
+                                        En Stock
+                                    </span>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Low Stock -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3 px-4 text-center">
+<div class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20 mx-auto">
+<img alt="Oil Filter" class="w-full h-full object-cover" data-alt="A clean, studio-lit photograph of a dark gray automotive oil filter canister on a pure white background. The brand label is subtle, focusing on the industrial form and mechanical precision required for auto maintenance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPulRTKqiarzKynEPCYbhBTbvmckRHfIMQfRLLxzePN3MeJdq9P0kzvzuP8WNzpGY3g1PzwaxWRT4x5_LobIULoZQGuPBlfs8h-efD67q71WS9QhlgBXOwBXvdmBZDHoadLVmldByxvlYp5s28i3snf2K0wjpj3Guh9USt3Gq-yAaKky5SjHdl2UnxTEP-k7JVZgCzIEhL0Nc7G072cqAW-qXLQsaTgeqKKe2gQpqouZAueI1A9eKS"/>
+</div>
+</td>
+<td class="py-3 px-4 font-medium">Filtro de Aceite Sintético de Alto Rendimiento</td>
+<td class="py-3 px-4 text-on-surface-variant font-mono text-sm">FLT-8831-OA</td>
+<td class="py-3 px-4 text-on-surface-variant">Mantenimiento</td>
+<td class="py-3 px-4 text-right font-medium text-error">12</td>
+<td class="py-3 px-4 text-right font-medium text-primary-container">$280.00</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#fff3e0] text-[#e65100] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ff9800]"></span>
+                                        Stock Bajo
+                                    </span>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Out of Stock -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3 px-4 text-center">
+<div class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20 mx-auto">
+<img alt="Fuel Injector" class="w-full h-full object-cover grayscale opacity-60" data-alt="A clean, studio-lit photograph of a complex automotive fuel injector component, showing intricate metallic nozzles and plastic connectors. The background is pure white, emphasizing technical precision and industrial design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsiYUUEIbT2uJHoOvDvmNZWp9D_AAsFEzYhROwjEG9751I2iMtj3qTk1g1S58u_bnEpxLFo57Q6uAXYXXWxJLGPWrMyecNxTLzj5hE1Nk8tx4EiKy7gdK0K3oaHbgFCqPhOto72VSkccFhbZgBp22kki5khz-0lqPqIRWkDCWHQi9OXnWHgJkcJPI2gYq3o0bNZB92F-XFvkbf34gdtl5vErmAs4yyp_Yp2bfh0qNKbq1aEfHHbHVS"/>
+</div>
+</td>
+<td class="py-3 px-4 font-medium text-on-surface-variant">Inyector de Combustible Multipunto</td>
+<td class="py-3 px-4 text-on-surface-variant/70 font-mono text-sm">INJ-1044-MP</td>
+<td class="py-3 px-4 text-on-surface-variant/70">Motor</td>
+<td class="py-3 px-4 text-right font-medium text-outline">0</td>
+<td class="py-3 px-4 text-right font-medium text-outline">$3,400.00</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Agotado
+                                    </span>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: In Stock -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-3 px-4 text-center">
+<div class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20 mx-auto">
+<img alt="Serpentine Belt" class="w-full h-full object-cover" data-alt="A studio photograph of a robust, black rubber automotive serpentine belt coiled neatly on a pure white background. The ridges of the belt are sharply in focus, conveying durability and precision engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4JSmMRGwJMaKrdEm7fBHp2DIo6ckyhT6UMdb5FiCpgEuLunIrcDFIB7Z4JuPwFC7LqvhzAiK4veHtCIz8v5IId1B16MRwiLgg1Ft3Je4I9WhnWg2UBUP5WX7pOUS5yZ9kU6wS_UdBzV31_oovVZMsfwl0Svj6xL02_ifANpaJyBGcfFH0wX800cv8qgQB1cRypWIKRFPWM8SwVJZHVKgXQpOFmW_Onomb_3Q06qPrO3sK7duZdCCz"/>
+</div>
+</td>
+<td class="py-3 px-4 font-medium">Banda de Accesorios (Serpentina)</td>
+<td class="py-3 px-4 text-on-surface-variant font-mono text-sm">BLT-9920-SR</td>
+<td class="py-3 px-4 text-on-surface-variant">Motor</td>
+<td class="py-3 px-4 text-right font-medium">85</td>
+<td class="py-3 px-4 text-right font-medium text-primary-container">$450.00</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#e8f5e9] text-[#2e7d32] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4caf50]"></span>
+                                        En Stock
+                                    </span>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-container-lowest border-t border-outline-variant/10 px-4 py-3 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mostrando 1 a 4 de 1,248 resultados</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-sm text-label-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-sm text-label-sm flex items-center justify-center">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile FAB (Visible only on mobile) -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="bg-[#ff5722] hover:bg-[#e64a19] text-white w-14 h-14 rounded-full flex items-center justify-center ambient-shadow active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</div>
+<script id="nav-wiring">
+(function(){
+  var BASE = '../';
+  var map = {
+    'dashboard':   BASE+'dashboard_administrador/code.html',
+    'inventario':  BASE+'cat_logo_de_inventario/code.html',
+    'usuarios':    BASE+'gesti_n_de_usuarios/code.html',
+    'movimientos': BASE+'historial_de_movimientos/code.html',
+    'reportes':    BASE+'reportes_y_anal_tica/code.html'
+  };
+  document.querySelectorAll('a').forEach(function(a){
+    var label = '';
+    a.querySelectorAll('span').forEach(function(s){
+      if(!s.classList.contains('material-symbols-outlined')) label += s.textContent;
+    });
+    if(!a.querySelector('span')) label = a.textContent;
+    label = label.trim().toLowerCase();
+    if(map[label]) a.setAttribute('href', map[label]);
+  });
+})();
+</script>
+</body></html>
